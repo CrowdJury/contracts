@@ -12,9 +12,9 @@ contract Person {
     bytes32 private skill_three;
     bytes32 private skill_four;
     bytes32 private skill_five;
-    addressArray private jugdments;
+    Addresses private jugdments;
 
-    struct addressArray {
+    struct Addresses {
         uint size;
         mapping (uint => address) array;
     }
@@ -27,7 +27,7 @@ contract Person {
         birthdate = _birthdate;
         id_string = _id_string;
         id_type = _id_type;
-        jugdments = addressArray(0);
+        jugdments = Addresses(0);
         skill_one = _skill_one;
         skill_two = _skill_two;
         skill_three = _skill_three;

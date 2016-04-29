@@ -8,9 +8,9 @@ contract Entity {
     bytes32 private residency_address;
     bytes32 private id_string;
     bytes32 private id_type;
-    addressArray private jugdments;
+    Addresses private jugdments;
 
-    struct addressArray {
+    struct Addresses {
         uint size;
         mapping (uint => address) array;
     }
@@ -23,7 +23,7 @@ contract Entity {
         residency_address = _residency_address;
         id_string = _id_string;
         id_type = _id_type;
-        jugdments = addressArray(0);
+        jugdments = Addresses(0);
     }
 
     function edit(bytes32 _legal_name, bytes32 _legal_email, bytes32 _residency_country, bytes32 _residency_address, bytes32 _id_string, bytes32 _id_type) constant returns (bool){

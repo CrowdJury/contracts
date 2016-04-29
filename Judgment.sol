@@ -5,6 +5,7 @@ contract Judgment {
     bool private finished;
     Litigants private litigants;
     Jury private jury;
+    Addresses private evidences
 
     struct Jury {
         uint size;
@@ -26,6 +27,10 @@ contract Judgment {
         uint votes;
         address litigantAddress;
     }
+    struct Addresses {
+        uint size;
+        mapping (uint => address) array;
+    }
 
     event judgmentFinish(address litigantSelected);
 
@@ -33,6 +38,7 @@ contract Judgment {
         owner = msg.sender;
         jury = Jury(jurySize,0,0);
         litigants = Litigants(litigantsSize);
+        evidences = Addresses(0);
         finished = false;
         for (uint i = 0; i < jurySize; i ++){
             jury.array[i] = JuryMember({
@@ -74,6 +80,17 @@ contract Judgment {
                 return true;
             }
         return false;
+    }
+
+    function addEvidence(address evidenceAddress) constant returns (bool){
+        if (owner != msg.sender)
+            return false;
+        for (uint i = 0; i < evidences.size; i ++)
+            if (evidences.array[i] == evidenceAddress)
+                return false;
+        evidences[evidences.size] = evidenceAddress;
+        evidences.size ++;
+        return true;
     }
 
     function vote(address litigantAddress) constant returns (bool){
@@ -161,6 +178,18 @@ contract Judgment {
                 return (litigants.array[i].votes, litigants.array[i].litigantAddress);
             else
                 return (0, litigants.array[i].litigantAddress);
+    }
+
+    function getEvidence(uint i) constant returns (address){
+        if (i > evidences.size)
+            return 0x0000000000000000000000000000000000000000;
+        for (uint i = 0; i < jury.size; i ++)
+            if (jury.array[i].memberAddress == msg.sender)
+                return evidences.array[i];
+        for (uint i = 0; i < litigants.size; i ++)
+            if (litigants.array[i].litigantAddress == msg.sender)
+                return evidences.array[i];
+        return 0x0000000000000000000000000000000000000000;
     }
 
     function isFinished() constant returns (bool){
