@@ -1,0 +1,28 @@
+{
+  "name": "crowdjury-contracts",
+  "version": "0.0.1",
+  "description": "Smart contracts of the crowdjury platform.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CrowdJury/contracts.git"
+  },
+  "keywords": [
+    "Crowdjury",
+    "Ethereum",
+    "smart-contracts",
+    "solidity"
+  ],
+  "author": "Augusto Lemble",
+  "license": "GNU",
+  "bugs": {
+    "url": "https://github.com/CrowdJury/contracts/issues"
+  },
+  "homepage": "https://github.com/CrowdJury/contracts#readme",
+  "devDependencies": {
+      "grunt": "~1.0.1",
+      "grunt-contrib-concat": "~1.0.0"
+  }
+}

@@ -13,3 +13,19 @@ A contract representing a person with his public information, skills and judgmen
 ###Entity.sol
 
 A contract representing a entity with his public information and judgments.
+
+###Evidence.sol
+
+A contract representing the evidence that is going to be use on the jugdment by the jury.
+
+## Build
+
+To concatenate all the files in only one contracts run:
+
+`grunt`
+
+## Test
+
+You can test the contracts on this solidity online compiler:
+
+https://chriseth.github.io/browser-solidity/#version=soljson-latest.js&optimize=true
