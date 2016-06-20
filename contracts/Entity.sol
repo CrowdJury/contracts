@@ -1,6 +1,5 @@
-contract Entity {
+contract Entity is Owned{
 
-    address private owner;
     bytes32 private name;
     bytes32 private legal_name;
     bytes32 private legal_email;
@@ -26,9 +25,7 @@ contract Entity {
         jugdments = Addresses(0);
     }
 
-    function edit(bytes32 _legal_name, bytes32 _legal_email, bytes32 _residency_country, bytes32 _residency_address, bytes32 _id_string, bytes32 _id_type) constant returns (bool){
-        if (owner != msg.sender)
-            return (false);
+    function edit(bytes32 _legal_name, bytes32 _legal_email, bytes32 _residency_country, bytes32 _residency_address, bytes32 _id_string, bytes32 _id_type) constant fromOwner returns (bool){
         legal_name = _legal_name;
         legal_email = _legal_email;
         residency_country = _residency_country;
@@ -45,12 +42,10 @@ contract Entity {
     function getJugdment(uint i) constant returns (address){
         if (i < jugdments.size)
             return (jugdments.array[i]);
-        return (0x0000000000000000000000000000000000000000);
+        return (0x0);
     }
 
-    function addJugdment(address jugdment_address) constant returns (bool){
-        if (owner != msg.sender)
-                return (false);
+    function addJugdment(address jugdment_address) constant fromOwner returns (bool){
         for(uint i = 0; i < jugdments.size; i ++)
             if (jugdments.array[i] == jugdment_address)
                 return (false);
@@ -59,9 +54,7 @@ contract Entity {
         return (true);
     }
 
-    function removeJugdment(address jugdment_address) constant returns (bool){
-        if (owner != msg.sender)
-                return (false);
+    function removeJugdment(address jugdment_address) constant fromOwner returns (bool){
         for(uint i = 0; i < jugdments.size; i ++)
             if (jugdments.array[i] == jugdment_address){
                 if (i == (jugdments.size-1)){

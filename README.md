@@ -22,7 +22,13 @@ A contract representing the evidence that is going to be use on the jugdment by 
 
 To concatenate all the files in only one contracts run:
 
-`grunt`
+`npm run build`
+
+## Dev
+
+To develop using grunt watch and building on every change:
+
+`npm run dev`
 
 ## Test
 

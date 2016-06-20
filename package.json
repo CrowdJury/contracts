@@ -1,9 +1,11 @@
 {
   "name": "crowdjury-contracts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Smart contracts of the crowdjury platform.",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+      "build": "node --stack-size=65500 index.js",
+      "dev": "node --stack-size=65500 index.js dev",
+      "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -22,7 +24,11 @@
   },
   "homepage": "https://github.com/CrowdJury/contracts#readme",
   "devDependencies": {
-      "grunt": "~1.0.1",
-      "grunt-contrib-concat": "~1.0.0"
+    "grunt": "~1.0.1",
+    "grunt-contrib-concat": "~1.0.0",
+    "grunt-contrib-watch": "^1.0.0"
+  },
+  "dependencies": {
+    "solc": "^0.3.5"
   }
 }

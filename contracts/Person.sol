@@ -1,6 +1,5 @@
-contract Person {
+contract Person is Owned{
 
-    address private owner;
     bytes32 private first_name;
     bytes32 private last_name;
     bytes32 private email;
@@ -35,9 +34,7 @@ contract Person {
         skill_five = _skill_five;
     }
 
-    function edit(bytes32 _first_name, bytes32 _last_name, bytes32 _email, bytes12 _birthdate, bytes32 _id_string, bytes32 _id_type, bytes32 _skill_one, bytes32 _skill_two, bytes32 _skill_three, bytes32 _skill_four, bytes32 _skill_five) constant returns (bool){
-        if (owner != msg.sender)
-            return (false);
+    function edit(bytes32 _first_name, bytes32 _last_name, bytes32 _email, bytes12 _birthdate, bytes32 _id_string, bytes32 _id_type, bytes32 _skill_one, bytes32 _skill_two, bytes32 _skill_three, bytes32 _skill_four, bytes32 _skill_five) constant fromOwner returns (bool){
         first_name = _first_name;
         last_name = _last_name;
         email = _email;
@@ -59,12 +56,10 @@ contract Person {
     function getJugdment(uint i) constant returns (address){
         if (i < jugdments.size)
             return (jugdments.array[i]);
-        return (0x0000000000000000000000000000000000000000);
+        return (0x0);
     }
 
-    function addJugdment(address jugdment_address) constant returns (bool){
-        if (owner != msg.sender)
-                return (false);
+    function addJugdment(address jugdment_address) constant fromOwner returns (bool){
         for(uint i = 0; i < jugdments.size; i ++)
             if (jugdments.array[i] == jugdment_address)
                 return (false);
@@ -73,9 +68,7 @@ contract Person {
         return (true);
     }
 
-    function removeJugdment(address jugdment_address) constant returns (bool){
-        if (owner != msg.sender)
-                return (false);
+    function removeJugdment(address jugdment_address) constant fromOwner returns (bool){
         for(uint i = 0; i < jugdments.size; i ++)
             if (jugdments.array[i] == jugdment_address){
                 if (i == (jugdments.size-1)){

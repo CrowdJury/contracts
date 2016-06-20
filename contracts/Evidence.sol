@@ -1,6 +1,5 @@
-contract Evidence {
+contract Evidence is Owned{
 
-    address private owner;
     address private jugdment;
     bytes32 private name;
     bytes32 private url;
@@ -12,7 +11,7 @@ contract Evidence {
         url = _url;
     }
 
-    function edit(bytes32 _name, bytes32 _url) constant returns (bool){
+    function edit(bytes32 _name, bytes32 _url) constant fromOwner returns (bool){
         if (owner != msg.sender)
             return (false);
         url = _url;
