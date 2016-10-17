@@ -39,6 +39,7 @@ contract Judgment is Owned{
 				throw;
 		if (isSpace)
 			throw;
+        _;
     }
 
 	modifier juryComplete(bool isSpace){
@@ -47,6 +48,7 @@ contract Judgment is Owned{
 				throw;
 		if (isSpace)
 			throw;
+        _;
     }
 
     function Judgment(uint jurySize, uint litigantsSize) {

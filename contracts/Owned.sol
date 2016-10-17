@@ -2,9 +2,9 @@ contract Owned {
 
     address public owner;
 
-    modifier fromOwner {
+    modifier fromOwner() {
         if (msg.sender != owner)
-			throw;
+			_;
     }
 
     function getOwner() constant returns (address) {

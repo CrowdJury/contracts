@@ -1,10 +1,10 @@
-contract Owned {
+pragma solidity ^0.4.1;contract Owned {
 
     address public owner;
 
-    modifier fromOwner {
+    modifier fromOwner() {
         if (msg.sender != owner)
-			throw;
+			_;
     }
 
     function getOwner() constant returns (address) {
@@ -239,6 +239,7 @@ contract Judgment is Owned{
 				throw;
 		if (isSpace)
 			throw;
+        _;
     }
 
 	modifier juryComplete(bool isSpace){
@@ -247,6 +248,7 @@ contract Judgment is Owned{
 				throw;
 		if (isSpace)
 			throw;
+        _;
     }
 
     function Judgment(uint jurySize, uint litigantsSize) {
